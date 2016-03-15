@@ -45,7 +45,7 @@ public class VarastoTest {
     public void otaLiikaa() {
         double saldo = varasto.getSaldo();
         assertEquals(saldo, varasto.otaVarastosta(saldo + 5.0), vertailuTarkkuus);
-        assertEquals(100.0, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
     
     @Test

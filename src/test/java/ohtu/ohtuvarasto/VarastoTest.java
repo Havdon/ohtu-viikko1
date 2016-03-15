@@ -21,6 +21,34 @@ public class VarastoTest {
     }
 
     @Test
+    public void liikaaTavaraa() {
+        double tilavuus = varasto.getTilavuus();
+        varasto.lisaaVarastoon(tilavuus + 10.0);
+        assertEquals(tilavuus, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaNegatiivinen() {
+        double saldo = varasto.getSaldo();
+        varasto.lisaaVarastoon(-1.0);
+        assertEquals(saldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otaNegatiivinen() {
+        double saldo = varasto.getSaldo();
+        varasto.otaVarastosta(-1.0);
+        assertEquals(saldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otaLiikaa() {
+        double saldo = varasto.getSaldo();
+        assertEquals(saldo, varasto.otaVarastosta(saldo + 5.0), vertailuTarkkuus);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
@@ -75,4 +103,5 @@ public class VarastoTest {
         varasto = new Varasto(-1,-1);
         varasto.toString();
     }
+    
 }
